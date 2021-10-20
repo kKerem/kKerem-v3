@@ -63,14 +63,11 @@
     </div>
 
     <script>
-        var lang = $.getJSON('js/colors.json');
-        console.log(lang['responseJSON'])
         var request = new XMLHttpRequest();
-        request.open('GET','https://api.github.com/users/kKerem/repos' , 
-        true)
+        request.open('GET','https://api.github.com/users/kKerem/repos', true)
         request.onload = function() {
             var data = JSON.parse(this.response);
-            console.log(data);
+            // console.log(data);
             var statusHTML = '';
             $.each(data, function(i, status){
                 statusHTML += '<div class="col-4 my-2"> \
@@ -93,6 +90,21 @@
             $('.repositories').html(statusHTML);
         }
         request.send();
+
+
+        
+        var renk = new XMLHttpRequest();
+        renk.open('GET','./js/colors.json', true)
+        renk.onload = function() {
+            var data = JSON.parse(this.response);
+            var renkHTML = '';
+            $.each(data, function(i, renk){
+                if( renkHTML == renk.language ) {
+                    return console.log(renk.language)
+                }
+            });
+        }
+        renk.send();
     </script>
 
 </body>
